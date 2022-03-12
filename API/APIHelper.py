@@ -1,6 +1,10 @@
 import requests
 from datetime import datetime
 
+# Data Test
+# data = [1,2,3,4,5]
+# data = [5,4,3,2,1]
+
 api_url = "https://skillacademy.com/skillacademy/discovery/search"
 HEADERS = {'Content-Type': 'application/json'}
 
@@ -35,6 +39,11 @@ def _totalRating():
 
 def _updatedAt():
     data = getParams(sortBy="updated_at",orderBy="desc")
+    response = requests.get(api_url, headers=HEADERS, params=data).json()
+    return response['data']['data']
+
+def _priceSort(orderBy):
+    data = getParams(sortBy="price",orderBy=orderBy)
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response['data']['data']
 
@@ -95,46 +104,87 @@ def maxDuration(maxDuration):
 
 def bestRatingChecker():
     data = _bestRating()
-    rating = 5
-    isPass = True
+    beforeRating = 5
+    result = []
     for d in data:
-        rating = str(d['rating'])
-        print(rating)
-        if float(rating) >= float(rating):
-            isPass = False
-    if isPass:
-        return True
-    else:
+        rating = int(d['rating'])
+        if beforeRating == rating:
+            result.append("Yes")
+        elif beforeRating > rating:
+            result.append("Yes")
+        else:
+            result.append("No")
+        beforeRating = rating
+    if "No" in result:
         return False
+    else:
+        return True
 
 def totalRatingChecker():
     data = _totalRating()
-    totalRating = 999999999
-    isPass = True
+    beforeRating = 999999999
+    result = []
     for d in data:
-        totalRating = str(d['totalRating'])
-        print(totalRating)
-        if float(totalRating) >= float(totalRating):
-            isPass = False
-    if isPass:
-        return True
-    else:
+        rating = int(d['totalRating'])
+        if beforeRating > rating:
+            result.append("Yes")
+        else:
+            result.append("No")
+        beforeRating = rating
+    if "No" in result:
         return False
+    else:
+        return True
 
 def updatedAtChecker():
     data = _updatedAt()
-    before = datetime.strptime("0001-01-01 00:00:00", "%Y-%m-%d %H:%M:%S")
-    isPass = True
+    initaltime = datetime.strptime("0001-01-01 00:00:00", "%Y-%m-%d %H:%M:%S")
+    result = []
     for d in data:
         time = str(d['updatedAt']).split(" +")[0]
-        after = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
-        print(after)
-        if before >= after:
-            isPass = False
-    if isPass:
-        return True
-    else:
+        time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
+        if initaltime >= time: #this should be > instead of >= . UpdatedAt value from API return same.
+            result.append("Yes")
+        else:
+            result.append("No")
+        initaltime = time
+    if "No" in result:
         return False
+    else:
+        return True
 
-if __name__ == '__main__':
-    updatedAtChecker()
+def minpriceSort(orderBy):
+    data = _priceSort(orderBy)
+    initialPrice = 0
+    result = []
+    for d in data:
+        price = int(d['price'])
+        if initialPrice < price:
+            result.append("Yes")
+        else:
+            result.append("No")
+        initialPrice = price
+    if "No" in result:
+        return False
+    else:
+        return True
+
+def maxpriceSort(orderBy):
+    data = _priceSort(orderBy)
+    initialPrice = 999999999
+    result = []
+    for d in data:
+        price = int(d['price'])
+        if initialPrice < price:
+            result.append("Yes")
+        else:
+            result.append("No")
+        initialPrice = price
+    if "No" in result:
+        return False
+    else:
+        return True
+
+# if __name__ == '__main__':
+#     val = totalRatingChecker()
+#     print(val)
