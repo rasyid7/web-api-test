@@ -43,3 +43,7 @@ API Search Rating Tertinggi Test
 API Search Rating Terbanyak Test
   ${response}=  totalRatingChecker
   Pass Execution If   ${response}        Sort By Most Rating is PASS
+
+API Search UpdatedAt Test
+  ${response}=  updatedAtChecker
+  Pass Execution If   ${response}        Sort By Most Rating is PASS

@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 api_url = "https://skillacademy.com/skillacademy/discovery/search"
 HEADERS = {'Content-Type': 'application/json'}
@@ -29,6 +30,11 @@ def _bestRating():
 
 def _totalRating():
     data = getParams(sortBy="total_rating",orderBy="desc")
+    response = requests.get(api_url, headers=HEADERS, params=data).json()
+    return response['data']['data']
+
+def _updatedAt():
+    data = getParams(sortBy="updated_at",orderBy="desc")
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response['data']['data']
 
@@ -115,5 +121,20 @@ def totalRatingChecker():
     else:
         return False
 
-# if __name__ == '__main__':
-#     bestRatingChecker()
+def updatedAtChecker():
+    data = _updatedAt()
+    before = datetime.strptime("0001-01-01 00:00:00", "%Y-%m-%d %H:%M:%S")
+    isPass = True
+    for d in data:
+        time = str(d['updatedAt']).split(" +")[0]
+        after = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
+        print(after)
+        if before >= after:
+            isPass = False
+    if isPass:
+        return True
+    else:
+        return False
+
+if __name__ == '__main__':
+    updatedAtChecker()
