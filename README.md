@@ -19,7 +19,8 @@ I want to add other test cases such as:
 1. One char search test e.g "a"
 2. Wrong Char e.g "*" test
 3. Max char test
-4. Empty char test
+4. Empty char test 
+<br>
 But no corresponding results expected
 
 ## Run API Test
