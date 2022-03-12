@@ -73,7 +73,7 @@ def minPriceChecker(minPrice):
     result = []
     for d in data:
         price = int(d['price'])
-        if price < minPrice:
+        if price < int(minPrice):
             result.append("No")
     if "No" in result:
         return False
@@ -85,7 +85,7 @@ def maxPriceChecker(maxPrice):
     result = []
     for d in data:
         price = int(d['price'])
-        if price > maxPrice:
+        if price > int(maxPrice):
             result.append("No")
     if "No" in result:
         return False
