@@ -27,6 +27,11 @@ def _bestRating():
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response['data']['data']
 
+def _totalRating():
+    data = getParams(sortBy="total_rating",orderBy="desc")
+    response = requests.get(api_url, headers=HEADERS, params=data).json()
+    return response['data']['data']
+
 def searchQueryChecker(search):
     data = _searchQuery(search)
     try:
@@ -88,9 +93,27 @@ def bestRatingChecker():
     isPass = True
     for d in data:
         rating = str(d['rating'])
-        if float(rating) >= 5:
+        print(rating)
+        if float(rating) >= float(rating):
             isPass = False
     if isPass:
         return True
     else:
         return False
+
+def totalRatingChecker():
+    data = _totalRating()
+    totalRating = 999999999
+    isPass = True
+    for d in data:
+        totalRating = str(d['totalRating'])
+        print(totalRating)
+        if float(totalRating) >= float(totalRating):
+            isPass = False
+    if isPass:
+        return True
+    else:
+        return False
+
+# if __name__ == '__main__':
+#     bestRatingChecker()
