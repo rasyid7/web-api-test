@@ -66,3 +66,9 @@ def maxPriceChecker(maxPrice):
         return True
     else:
         return False
+
+def minDuration(minDuration):
+    data = getParams(minDuration=minDuration)
+    print(data)
+    response = requests.get(api_url, headers=HEADERS, params=data).json()
+    return response['data']['totalCourse']

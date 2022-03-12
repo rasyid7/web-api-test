@@ -25,3 +25,8 @@ API Search maxPrice Test
   ${maxPrice}=  Set Variable      300000
   ${response}=  maxPriceChecker   ${maxPrice}
   Pass Execution If   ${response}      Maximum Price Is Pass ${maxPrice}
+
+API Search minDuration Test
+  ${minDuration}=  Set Variable   3
+  ${response}=  minDuration   ${minDuration}
+  Pass Execution If   ${response}>1      Minimum Duration Is Pass ${response} courses
