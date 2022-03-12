@@ -15,3 +15,8 @@ API Search pageSize Test
   ${pageSize}=  Set Variable    30
   ${response}=  pageSize        ${pageSize}
   Pass Execution If   ${response}==${pageSize}      Page Size return same ${pageSize}
+
+API Search minPrice Test
+  ${minPrice}=  Set Variable      300000
+  ${response}=  minPriceChecker   ${minPrice}
+  Pass Execution If   ${response}      Minimum Price Is Pass ${minPrice}

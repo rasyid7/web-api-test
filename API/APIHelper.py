@@ -12,6 +12,11 @@ def _searchQuery(search):
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response
 
+def _minPrice(minPrice):
+    data = getParams(minPrice=minPrice)
+    response = requests.get(api_url, headers=HEADERS, params=data).json()
+    return response['data']['data']
+
 def searchQueryChecker(search):
     data = _searchQuery(search)
     try:
@@ -32,3 +37,15 @@ def pageSize(pageSize):
     data = getParams(pageSize=pageSize)
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response['data']['pageSize']
+
+def minPriceChecker(minPrice):
+    data = _minPrice(minPrice)
+    isPass = True
+    for d in data:
+        price = str(d['price'])
+        if price < minPrice:
+            isPass = False
+    if isPass:
+        return True
+    else:
+        return False
