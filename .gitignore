@@ -4,3 +4,4 @@ report.html
 *.png
 venv/*
 .DS_Store
+*__pycache__
