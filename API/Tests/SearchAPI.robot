@@ -46,4 +46,8 @@ API Search Rating Terbanyak Test
 
 API Search UpdatedAt Test
   ${response}=  updatedAtChecker
-  Pass Execution If   ${response}        Sort By Most Rating is PASS
+  Pass Execution If   ${response}        Sort By Most Update is PASS
+
+API Search minPriceSort Test
+  ${response}=  priceSort  asc
+  Pass Execution If   ${response}        Sort By Cheapest is PASS
