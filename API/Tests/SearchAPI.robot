@@ -20,3 +20,8 @@ API Search minPrice Test
   ${minPrice}=  Set Variable      300000
   ${response}=  minPriceChecker   ${minPrice}
   Pass Execution If   ${response}      Minimum Price Is Pass ${minPrice}
+
+API Search maxPrice Test
+  ${maxPrice}=  Set Variable      300000
+  ${response}=  maxPriceChecker   ${maxPrice}
+  Pass Execution If   ${response}      Maximum Price Is Pass ${maxPrice}

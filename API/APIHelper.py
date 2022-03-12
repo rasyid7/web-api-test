@@ -17,6 +17,11 @@ def _minPrice(minPrice):
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response['data']['data']
 
+def _maxPrice(maxPrice):
+    data = getParams(maxPrice=maxPrice)
+    response = requests.get(api_url, headers=HEADERS, params=data).json()
+    return response['data']['data']
+
 def searchQueryChecker(search):
     data = _searchQuery(search)
     try:
@@ -44,6 +49,18 @@ def minPriceChecker(minPrice):
     for d in data:
         price = str(d['price'])
         if price < minPrice:
+            isPass = False
+    if isPass:
+        return True
+    else:
+        return False
+
+def maxPriceChecker(maxPrice):
+    data = _maxPrice(maxPrice)
+    isPass = True
+    for d in data:
+        price = str(d['price'])
+        if price > maxPrice:
             isPass = False
     if isPass:
         return True
