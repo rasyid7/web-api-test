@@ -51,3 +51,7 @@ API Search UpdatedAt Test
 API Search minPriceSort Test
   ${response}=  priceSort  asc
   Pass Execution If   ${response}        Sort By Cheapest is PASS
+
+API Search maxPriceSort Test
+  ${response}=  priceSort  desc
+  Pass Execution If   ${response}        Sort By Cheapest is PASS
