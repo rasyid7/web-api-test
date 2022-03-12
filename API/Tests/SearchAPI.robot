@@ -30,3 +30,8 @@ API Search minDuration Test
   ${minDuration}=  Set Variable   3
   ${response}=  minDuration   ${minDuration}
   Pass Execution If   ${response}>1      Minimum Duration Is Pass ${response} courses
+
+API Search maxDuration Test
+  ${maxDuration}=  Set Variable   3
+  ${response}=  maxDuration   ${maxDuration}
+  Pass Execution If   ${response}>1      Maximum Duration Is Pass ${response} courses
