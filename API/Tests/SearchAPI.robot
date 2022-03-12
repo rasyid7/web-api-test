@@ -49,9 +49,9 @@ API Search UpdatedAt Test
   Pass Execution If   ${response}        Sort By Most Update is PASS
 
 API Search minPriceSort Test
-  ${response}=  priceSort  asc
+  ${response}=  minpriceSort  asc
   Pass Execution If   ${response}        Sort By Cheapest is PASS
 
 API Search maxPriceSort Test
-  ${response}=  priceSort  desc
+  ${response}=  maxpriceSort  desc
   Pass Execution If   ${response}        Sort By Cheapest is PASS
