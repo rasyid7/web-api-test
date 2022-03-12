@@ -11,3 +11,10 @@ Valid Search Return Search Value
   Search For              ${searchKeyword}
   Verify Search Result    ${searchKeyword}
   Verify Course Card Result
+
+Wrong Search Return Empty Search
+  ${searchKeyword}=       Set Variable    alskdjasdjaldadjad
+  Verify on SkillAcademy Page
+  Verify Search Bar Is Shown
+  Search For                    ${searchKeyword}
+  Verify Empty Search Result    ${searchKeyword}

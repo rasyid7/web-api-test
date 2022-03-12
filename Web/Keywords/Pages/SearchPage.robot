@@ -24,3 +24,8 @@ Verify Course Card Result
     ${pageCount}=     Get Element Count     //div[@data-testid="course-card"]
     Element Text Should Be                  //span[@data-testid="total-result"]     ${pageCount}
   END
+
+Verify Empty Search Result
+  [Arguments]     ${searchKey}
+  Wait Until Page Contains Element          //div[@data-testid="empty-result-card"]
+  Element Text Should Be                    //p[@data-testid="empty-card-title"]    Maaf, kami tidak menemukan hasil untuk "${searchKey}"
