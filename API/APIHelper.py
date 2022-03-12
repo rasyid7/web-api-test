@@ -27,3 +27,8 @@ def searchPage(numberPage):
     data = getParams(page=numberPage)
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response['data']['page']
+
+def pageSize(pageSize):
+    data = getParams(pageSize=pageSize)
+    response = requests.get(api_url, headers=HEADERS, params=data).json()
+    return response['data']['pageSize']
