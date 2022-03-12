@@ -35,3 +35,7 @@ API Search maxDuration Test
   ${maxDuration}=  Set Variable   3
   ${response}=  maxDuration   ${maxDuration}
   Pass Execution If   ${response}>1      Maximum Duration Is Pass ${response} courses
+
+API Search Rating Tertinggi Test
+  ${response}=  bestRatingChecker
+  Pass Execution If   ${response}        Sort By Best Rating is PASS

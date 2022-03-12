@@ -22,6 +22,11 @@ def _maxPrice(maxPrice):
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response['data']['data']
 
+def _bestRating():
+    data = getParams(sortBy="average_rating",orderBy="desc")
+    response = requests.get(api_url, headers=HEADERS, params=data).json()
+    return response['data']['data']
+
 def searchQueryChecker(search):
     data = _searchQuery(search)
     try:
@@ -76,3 +81,16 @@ def maxDuration(maxDuration):
     data = getParams(maxDuration=maxDuration)
     response = requests.get(api_url, headers=HEADERS, params=data).json()
     return response['data']['totalCourse']
+
+def bestRatingChecker():
+    data = _bestRating()
+    rating = 5
+    isPass = True
+    for d in data:
+        rating = str(d['rating'])
+        if float(rating) >= 5:
+            isPass = False
+    if isPass:
+        return True
+    else:
+        return False
