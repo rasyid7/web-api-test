@@ -39,3 +39,7 @@ API Search maxDuration Test
 API Search Rating Tertinggi Test
   ${response}=  bestRatingChecker
   Pass Execution If   ${response}        Sort By Best Rating is PASS
+
+API Search Rating Terbanyak Test
+  ${response}=  totalRatingChecker
+  Pass Execution If   ${response}        Sort By Most Rating is PASS
