@@ -71,14 +71,15 @@ def pageSize(pageSize):
 def minPriceChecker(minPrice):
     data = _minPrice(minPrice)
     isPass = True
+    result = []
     for d in data:
-        price = str(d['price'])
+        price = int(d['price'])
         if price < minPrice:
-            isPass = False
-    if isPass:
-        return True
-    else:
+            result.append("No")
+    if "No" in result:
         return False
+    else:
+        return True
 
 def maxPriceChecker(maxPrice):
     data = _maxPrice(maxPrice)
@@ -186,5 +187,5 @@ def maxpriceSort(orderBy):
         return True
 
 # if __name__ == '__main__':
-#     val = totalRatingChecker()
+#     val = minPriceChecker(300000)
 #     print(val)
